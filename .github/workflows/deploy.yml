@@ -38,10 +38,12 @@ jobs:
         run: "julia --project -e 'using Pkg; Pkg.instantiate()'"
       - name: Create standings.html
         run: "julia --project -e 'using GraphicalNhlStandings; plot_standings(fetch_schedule)'"
+      - name: Move standings.html to a directory to be uploaded
+        run: "mkdir upload && mv standings.html upload/index.html"
       - name: Upload standings.html
         uses: actions/upload-pages-artifact@v1
         with:
-          path: './standings.html'
+          path: './upload'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
