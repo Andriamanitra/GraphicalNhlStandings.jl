@@ -56,12 +56,15 @@ TEAMCOLORS = Dict(
 
 const API_URL = "https://api-web.nhle.com/v1"
 
-function fetch_schedule(team_abbr, season_id=20232024)
+function fetch_schedule(team_abbr; season_id=20232024, save=false)
     url = "$API_URL/club-schedule-season/$team_abbr/$season_id"
     println("Fetching $url")
     req = HTTP.get(url)
     schedule = JSON.parse(String(req.body))
-    write("schedules/$team_abbr.json", JSON.json(schedule))
+    if save
+        mkpath("schedules")
+        write("schedules/$team_abbr.json", JSON.json(schedule))
+    end
     schedule
 end
 
