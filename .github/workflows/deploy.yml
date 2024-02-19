@@ -2,7 +2,7 @@ name: Deploy to Github Pages
 
 on:
   schedule:
-    - cron: '06 21 * * *'
+    - cron: '01 07 * * *'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
