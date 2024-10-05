@@ -125,13 +125,18 @@ function plot_standings(get_schedule=read_cached_schedule)
 
         time_series, plusminus, game_labels = team_data(team_abbr, schedule)
 
+        # start from 0
+        time_series = [0, time_series...]
+        plusminus = [0, plusminus...]
+        hoverlabels = ["", game_labels...]
+
         # small random offset so lines don't perfectly overlap
         plusminus = plusminus .+ rand(-0.1:0.01:0.1)
 
         Plots.plot!(
-            [0, time_series...],
-            [0, plusminus...], # 
-            hover=["", game_labels...],
+            time_series,
+            plusminus,
+            hover=hoverlabels,
             label=team_abbr,
             width=3,
             color=TEAMCOLORS[team_abbr]
